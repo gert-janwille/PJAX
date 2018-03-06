@@ -8,8 +8,9 @@ $(document).ready(() => {
   Pjax.init({
     wrapper: '.example-wrapper',    // Inside of wrapper will change.
     container:'.example-container', // Container that will be replaced.
-    prefetch: true,               // Cache all pages on first request.
-    verbose: true                 // Get lib output (fetching pages,...).
+    prefetch: true,                 // Cache all pages on first request.
+    enableCache: true,              // Cache pages after loading.
+    verbose: true                   // Get lib output (fetching pages,...).
   });
 
 

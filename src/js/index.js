@@ -6,7 +6,8 @@ $(document).ready(() => {
     wrapper: '.barba-wrapper',
     container:'.barba-container',
     prefetch: true,
-    verbose: true
+    enableCache: true,
+    verbose: true,
   });
 
   Pjax.animate({
@@ -19,7 +20,7 @@ $(document).ready(() => {
       // });
 
 
-      //One by One
+      // One by One
       newContainer.css({
         'marginLeft': '100vw',
         'opacity': '0'

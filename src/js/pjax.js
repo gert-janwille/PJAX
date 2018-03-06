@@ -1,6 +1,3 @@
-// TODO: PJAX Script
-//        - When multiple popstate, then click item -> BROKEN
-
 const Pjax = {
   wrapper: '.pjax-wrapper',
   container: '.pjax-container',
@@ -22,20 +19,17 @@ const Pjax = {
     oDone: false,
   },
 
-
   init(obj={}) {
-
     $.map(obj, (val, key) => this[key] = val);
-
-    if (this.prefetch) this._prefetch();
     this.href = window.location.href;
 
     window.addEventListener('popstate', e => this._popAction(e));
-
     this._start();
   },
 
   _start() {
+    if (this.prefetch) this._prefetch();
+
     $('a').off().click(e => {
       e.preventDefault();
       this._storeClickedElements(e.target);
@@ -79,11 +73,6 @@ const Pjax = {
   _animate() {
     this.isAnimating = true;
 
-    // TODO: Checking for the best animations
-    // this.newContainer.css({opacity: 0})
-    // this.newContainer.css('visibility','hidden');
-    // this.newContainer.css('display','none');
-
     // Start custom animations from main script
     if (this.animations.start) this.animations.start(this);
 
@@ -96,6 +85,7 @@ const Pjax = {
   },
 
   _prefetch(prefetch) {
+    if (!this.enableCache) return;
     this.prefetch = prefetch;
 
     // Get All links on main page
