@@ -2,8 +2,8 @@ $(document).ready(() => {
 
   // Initialize the Pjax Library.
   Pjax.init({
-    wrapper: '.example-wrapper',    // Inside of wrapper will change.
-    container:'.example-container', // Container that will be replaced.
+    wrapper: '.pjax-wrapper',    // Inside of wrapper will change.
+    container:'.pjax-container', // Container that will be replaced.
     prefetch: true,               // Cache all pages on first request.
     enableCache: true,            // Cache pages after loading.
     verbose: true,                // Get lib output (fetching pages,...).

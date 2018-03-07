@@ -1,0 +1,25 @@
+.pjax-container {
+  border: 1px solid black;
+  height: 80vh;
+}
+
+.example-container {
+  width: 100vw;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 5rem;
+}
+
+.load-btn {
+  background: blue;
+  height: 100%;
+  width: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
