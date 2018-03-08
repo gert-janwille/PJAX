@@ -25,7 +25,7 @@ $(document).ready(() => {
       });
 
       oldContainer.find('.title').animate({ opacity: 0 }, 100);
-      oldContainer.find('.text').animate({ opacity: 0 }, 300);
+      oldContainer.find('.text').animate({ opacity: 0 }, 500);
       oldContainer.animate({ opacity: 0 }, 800).promise().done(() => {
         newContainer.animate({ marginLeft: '0', opacity: 1 }, 800)
       });

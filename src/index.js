@@ -24,10 +24,10 @@ $(document).ready(() => {
         'opacity': '0'
       });
 
-      oldContainer.find('.title').animate({ opacity: 0 }, 300);
-      oldContainer.find('.text').animate({ opacity: 0 }, 800);
+      oldContainer.find('.title').animate({ opacity: 0 }, 100);
+      oldContainer.find('.text').animate({ opacity: 0 }, 500);
       oldContainer.animate({ opacity: 0 }, 1300).promise().done(() => {
-        newContainer.animate({ marginLeft: '0', opacity: 1 }, 1300)
+        newContainer.animate({ marginLeft: '0', opacity: 1 }, 800)
       });
 
     }
