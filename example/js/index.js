@@ -4,7 +4,7 @@ $(document).ready(() => {
   Pjax.init({
     wrapper: '.example-wrapper',    // Inside of wrapper will change.
     container:'.example-container', // Container that will be replaced.
-    prefetch: false,               // Cache all pages on first request.
+    prefetch: true,               // Cache all pages on first request.
     enableCache: true,            // Cache pages after loading.
     verbose: true,                // Get lib output (fetching pages,...).
   });
@@ -24,10 +24,10 @@ $(document).ready(() => {
         'opacity': '0'
       });
 
-      oldContainer.find('.title').animate({ opacity: 0 }, 300);
-      oldContainer.find('.text').animate({ opacity: 0 }, 800);
-      oldContainer.animate({ opacity: 0 }, 1300).promise().done(() => {
-        newContainer.animate({ marginLeft: '0', opacity: 1 }, 1300)
+      oldContainer.find('.title').animate({ opacity: 0 }, 100);
+      oldContainer.find('.text').animate({ opacity: 0 }, 300);
+      oldContainer.animate({ opacity: 0 }, 800).promise().done(() => {
+        newContainer.animate({ marginLeft: '0', opacity: 1 }, 800)
       });
 
     }

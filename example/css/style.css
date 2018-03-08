@@ -23,3 +23,27 @@ nav {
   justify-content: center;
   color: white;
 }
+
+.animate-container {
+  animation: backgroundChange 3s linear 1s infinite alternate;
+}
+
+.animate-text {
+  animation: slideIn 3s ease;
+  width: 80vw;
+}
+
+.animate-title {
+  animation: slideIn 2s ease-out;
+  width: 80vw;
+}
+
+@keyframes backgroundChange {
+    from {background-color: red;}
+    to {background-color: yellow;}
+}
+
+@keyframes slideIn {
+    from {margin-left: 100vw;}
+    to {margin-left: 0;}
+}
