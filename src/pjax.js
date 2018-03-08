@@ -140,7 +140,7 @@ const Pjax = {
     this._start();
   },
 
-  _prefetch(prefetch) {
+  _prefetch: async function(prefetch) {
     // If cache is disabled don't do a prefetch.
     if (!this.enableCache) return;
     // Prefetch only once, set null or false.
