@@ -154,6 +154,8 @@ const Pjax = {
     this._crawlPages(pageLinks);
   },
 
+  _AllLinks: [],
+
   _crawlPages(links) {
     // Map over all page links.
     links.map(url => {
@@ -168,10 +170,14 @@ const Pjax = {
           // If all pages are cached stop prefetch.
           if (!newLinks.length) return this.verbose ? console.log('All pages Fetched', this.cache) : null;
           // else map, fetch and cache again.
-          newLinks.map(url => !this.cache[url] ? this._crawlPages(newLinks) : null)
+          newLinks.map(l => {
+            if (this._AllLinks.indexOf(l) !== -1) return;
+            this._AllLinks.push(l);
+            this._AllLinks.map(url => this.cache[url] === undefined ? this._crawlPages([url]) : null)
+          })
         })
         // If there is an error log it.
-        .catch(e => console.error('Crawl Error', e));
+        .catch(e => console.error('Crawling Error: ', e));
     });
   },
 
