@@ -9,28 +9,28 @@
     <h1>PJAX Example</h1>
 
     <nav>
-      <a href="/index.html" class="load-btn">First</a>
-      <a href="/pages/contentPage.html" class="load-btn">Second</a>
-      <a href="/pages/other.html" class="load-btn">Third</a>
+      <a href="/index.html" class="load-btn pjax-link">First</a>
+      <a href="/pages/contentPage.html" class="load-btn pjax-link" js-on="/js/hello.js">Second</a>
+      <a href="/pages/other.html" class="load-btn pjax-link">Third</a>
     </nav>
 
     <div class="example-wrapper">
       <div class="example-container" style="background-color:MediumPurple">
 
         <h1 class="title">First Content</h1>
-        <p class="text">Lorem qdsfmqsdjfqm mqsdkjf qsdfjm ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <!-- <p class="text">Lorem qdsfmqsdjfqm mqsdkjf qsdfjm ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
         <a href="/pages/other.html">return 3</a>
-        <a href="/pages/contentPage.html">next 2</a>
+        <a href="/pages/contentPage.html">next 2</a> -->
 
       </div>
     </div>
 
-    <script type="text/javascript" src="https://cdn.rawgit.com/gert-janwille/PJAX/3c51a8d0/src/pjax.min.js"></script>
+    <!-- <script type="text/javascript" src="https://cdn.rawgit.com/gert-janwille/PJAX/3c51a8d0/src/pjax.min.js"></script> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <!-- <script src="./js/pjax/pjax.min.js"></script> -->
+    <script src="./js/pjax/pjax.min.js"></script>
     <!-- <script src="./js/pjax/pjax.js"></script> -->
-    <script src="./js/index.js"></script>
+    <script src="./js/index.js" id='/js/index.js'></script>
 
   </body>
 </html>

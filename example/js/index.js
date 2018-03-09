@@ -2,6 +2,7 @@ $(document).ready(() => {
 
   // Initialize the Pjax Library.
   Pjax.init({
+    linkClass: '.pjax-link',        // Link need to add on a tag to use pjax.
     wrapper: '.example-wrapper',    // Inside of wrapper will change.
     container:'.example-container', // Container that will be replaced.
     prefetch: true,               // Cache all pages on first request.
@@ -31,6 +32,14 @@ $(document).ready(() => {
       });
 
     }
+  });
+
+
+  var lastScrollTop = 0;
+  $(window).scroll(function(event){
+     var st = $(this).scrollTop();
+     if (st < lastScrollTop) Pjax.backToPage('http://localhost:3000/index.html');
+     lastScrollTop = st;
   });
 
 });

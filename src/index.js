@@ -2,8 +2,9 @@ $(document).ready(() => {
 
   // Initialize the Pjax Library.
   Pjax.init({
-    wrapper: '.pjax-wrapper',    // Inside of wrapper will change.
-    container:'.pjax-container', // Container that will be replaced.
+    linkClass: '.pjax-link',        // Link need to add on a tag to use pjax.
+    wrapper: '.example-wrapper',    // Inside of wrapper will change.
+    container:'.example-container', // Container that will be replaced.
     prefetch: true,               // Cache all pages on first request.
     enableCache: true,            // Cache pages after loading.
     verbose: true,                // Get lib output (fetching pages,...).
@@ -26,11 +27,19 @@ $(document).ready(() => {
 
       oldContainer.find('.title').animate({ opacity: 0 }, 100);
       oldContainer.find('.text').animate({ opacity: 0 }, 500);
-      oldContainer.animate({ opacity: 0 }, 1300).promise().done(() => {
+      oldContainer.animate({ opacity: 0 }, 800).promise().done(() => {
         newContainer.animate({ marginLeft: '0', opacity: 1 }, 800)
       });
 
     }
+  });
+
+
+  var lastScrollTop = 0;
+  $(window).scroll(function(event){
+     var st = $(this).scrollTop();
+     if (st < lastScrollTop) Pjax.hasScrolToPrevious();
+     lastScrollTop = st;
   });
 
 });

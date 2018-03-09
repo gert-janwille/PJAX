@@ -18,8 +18,8 @@ const Pjax = {
   container: '.pjax-container',
   // Set default no prefetch class.
   ignorePrefetchClass: '.no-prefetch',
-  // Set default ignore a tag link class.
-  ignoreLinkClass: '.no-link',
+  // Set default a tag link class.
+  linkClass: '.pjax-link',
 
 
   // Set default false to give output (caching, fetching pages).
@@ -52,11 +52,22 @@ const Pjax = {
     $.map(obj, (val, key) => this[key] = val);
     // Save current link.
     this.href = window.location.href;
+    this.lastElements.push(this.href);
 
     // If user go back.
     window.addEventListener('popstate', e => this._popAction(e));
     // Start the main script.
     this._start();
+  },
+
+  hasScrolToPrevious() {
+    const element = this.lastElements[0];
+    if (this.href === element) return;
+    if (!this.isAnimating) {
+      this.lastElements = [];
+      this._storeLatest(element);
+      this._trigger({}, element);
+    }
   },
 
   _start() {
@@ -66,12 +77,15 @@ const Pjax = {
     // Find all a tags.
     $('a').off().click(e => {
       // If no-link ignore and continue.
-      if (e.target.classList.contains(this.ignoreLinkClass.split('.').join(""))) return;
+      if (!e.target.classList.contains(this.linkClass.split('.').join(""))) return;
 
       // else start replace and animate.
       e.preventDefault();
+      // Change js files if needed.
+      this._changeJS(e.target);
       // Save the 3 latest clicks.
       this._storeClickedElements(e.target);
+      this._storeLatest(e.target.href)
       // if no animation start trigger.
       if (!this.isAnimating) this._trigger(e, e.target.href);
     });
@@ -222,6 +236,11 @@ const Pjax = {
     // if the array has more then 3 items remove the first added one.
     if (this.lastClickedElements.length > 3) this.lastClickedElements.pop();
   },
+  lastElements: [],
+  _storeLatest(href) {
+    this.lastElements.push(href);
+    if (this.lastElements.length > 2) this.lastElements.shift();
+  },
 
   _popAction(e) {
     // Get url from the browser url bar.
@@ -230,6 +249,39 @@ const Pjax = {
     this.isAnimating = false;
     // Trigger the fetch and animation.
     this._trigger(e, href);
+  },
+
+  _changeJS (el) {
+    ['on', 'off'].map(s=> this._mapJS(el, s));
+  },
+
+  files:{},
+
+  _mapJS (element, key) {
+    if (this.files[key]) this.files[key].map(f => this._includeJS(f, key === 'off' ? 'on' : 'off'));
+    let files = element.getAttribute(`js-${key}`);
+    this.files[key] = files ? files.split(' ') : [];
+    this.files[key].map(f => this._includeJS(f, key));
+  },
+
+  _includeJS (filename, status) {
+    if(status == "on"){
+       var body = document.getElementsByTagName('body')[0];
+
+       const script = document.createElement('script');
+       script.src = filename;
+       script.type = "text/javascript";
+       script.id = filename;
+
+       body.appendChild(script);
+    }else{
+      try {
+        const elem = document.getElementById(filename);
+        elem.parentNode.removeChild(elem);
+      } catch (e) {
+        console.warn(`id: ${filename} not found.`);
+      }
+    }
   },
 
   _done(key) {

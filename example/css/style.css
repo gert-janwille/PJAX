@@ -1,6 +1,5 @@
-.pjax-container {
-  border: 1px solid black;
-  height: 80vh;
+body {
+  height: 200vh;
 }
 
 .example-container {
