@@ -38,7 +38,7 @@ $(document).ready(() => {
   var lastScrollTop = 0;
   $(window).scroll(function(event){
      var st = $(this).scrollTop();
-     if (st < lastScrollTop) Pjax.backToPage('http://localhost:3000/index.html');
+     if (st < lastScrollTop) Pjax.backToPage('/');
      lastScrollTop = st;
   });
 
